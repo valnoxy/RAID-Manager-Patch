@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.ServiceProcess;
 
 namespace RAIDManagerPatch
@@ -9,12 +10,7 @@ namespace RAIDManagerPatch
     internal class Program
     {
         public static string MegaRAID = "C:\\Program Files (x86)\\MegaRAID Storage Manager";
-
-        #error Not implemented yet
-        public static string maxView = "";
-
-        #error Not implemented yet
-        public static string RAIDWebConsole2 = "";
+        public static string maxView = "C:\\Program Files\\Adaptec\\maxView Storage Manager\\apache-tomcat\\webapps\\maxview\\WEB-INF\\lib";
 
         static void Main(string[] args)
         {
@@ -33,24 +29,62 @@ namespace RAIDManagerPatch
                     log4j = "log4j-1.2.15.jar";
             }
 
-            if (service == "notInplementetYet") // maxView Storage Manager
+            if (service == "maxViewWebServer") // maxView Storage Manager
             {
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.16.0.jar")))
+                    log4j = "2.16.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.15.0.jar")))
+                    log4j = "2.15.0";
                 if (File.Exists(Path.Combine(maxView, "log4j-core-2.14.1.jar")))
-                    log4j = "log4j-core-2.14.1.jar";
+                    log4j = "2.14.1";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.14.0.jar")))
+                    log4j = "2.14.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.13.3.jar")))
+                    log4j = "2.13.3";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.13.2.jar")))
+                    log4j = "2.13.2";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.13.1.jar")))
+                    log4j = "2.13.1";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.13.0.jar")))
+                    log4j = "2.13.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.12.4.jar")))
+                    log4j = "2.12.4";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.12.3.jar")))
+                    log4j = "2.12.3";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.12.2.jar")))
+                    log4j = "2.12.2";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.12.1.jar")))
+                    log4j = "2.12.1";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.12.0.jar")))
+                    log4j = "2.12.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.11.2.jar")))
+                    log4j = "2.11.2";
                 if (File.Exists(Path.Combine(maxView, "log4j-core-2.11.1.jar")))
-                    log4j = "log4j-core-2.11.1.jar";
-                if (File.Exists(Path.Combine(maxView, "log4j-core-2.2.jar")))
-                    log4j = "log4j-core-2.2.jar";
-            }
-
-            if (service == "notInplementetYet") // RAID Web Console 2
-            {
-                if (File.Exists(Path.Combine(RAIDWebConsole2, "log4j-core-2.14.1.jar")))
-                    log4j = "log4j-core-2.14.1.jar";
-                if (File.Exists(Path.Combine(RAIDWebConsole2, "log4j-core-2.11.1.jar")))
-                    log4j = "log4j-core-2.11.1.jar";
-                if (File.Exists(Path.Combine(RAIDWebConsole2, "log4j-core-2.2.jar")))
-                    log4j = "log4j-core-2.2.jar";
+                    log4j = "2.11.1";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.11.0.jar")))
+                    log4j = "2.11.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.10.0.jar")))
+                    log4j = "2.10.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.9.1.jar")))
+                    log4j = "2.9.1";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.9.0.jar")))
+                    log4j = "2.9.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.8.2.jar")))
+                    log4j = "2.8.2";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.8.1.jar")))
+                    log4j = "2.8.1";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.8.0.jar")))
+                    log4j = "2.8.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.7.0.jar")))
+                    log4j = "2.7.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.6.2.jar")))
+                    log4j = "2.6.2";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.6.1.jar")))
+                    log4j = "2.6.1";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.6.0.jar")))
+                    log4j = "2.6.0";
+                if (File.Exists(Path.Combine(maxView, "log4j-core-2.5.0.jar")))
+                    log4j = "2.5.0";
             }
 
             if (String.IsNullOrEmpty(log4j))
@@ -68,20 +102,20 @@ namespace RAIDManagerPatch
 
             Console.WriteLine("[i] Removing vulnerable classes from jar file ...");
 
-            if (service == "MSMFramework")
+            if (service == "MSMFramework") // MegaRAID Storame Manager
                 RemoveClass(service, Path.Combine(MegaRAID, log4j));
 
-            #error Not implemented yet
-            if (service == "apcpbeagent")
-                RemoveClass(service, Path.Combine(business_path, log4j));
+            if (service == "maxViewWebServer") // maxView Storage Manager
+                UpdateClass(maxView, "https://dl.exploitox.de/other/vuln/log4j/v2.17.1/log4j-core-2.17.1.jar", log4j, "core");
 
             RunService(service, true);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("[i] PowerChute was successfully patched! Closing ...");
+            Console.WriteLine("[i] The RAID manager was successfully patched! Closing ...");
             Console.ForegroundColor = ConsoleColor.White;
             System.Threading.Thread.Sleep(5000);
         }
 
+        #region Check System
         static string CheckSys()
         {
             Console.WriteLine("[i] Searching for RAID Manager ...");
@@ -93,24 +127,18 @@ namespace RAIDManagerPatch
             if (Directory.Exists(maxView))
             {
                 Console.WriteLine("[i] maxView Storage Manager found!");
-                return "notInplementetYet";
-                #error Not implemented yet
-            }
-            if (Directory.Exists(RAIDWebConsole2))
-            {
-                Console.WriteLine("[i]Intel RAID Web Console 2 found!");
-                return "notInplementetYet";
-                #error Not implemented yet
+                return "maxViewWebServer";
             }
             else
             {
-                Console.WriteLine("[!] Error: Cannot find PowerChute Business Edition or Network Shutdown.");
+                Console.WriteLine("[!] Error: Cannot find any RAID managers on this device.");
                 System.Threading.Thread.Sleep(5000);
                 Environment.Exit(-1);
                 return "";
             }
         }
-
+        #endregion
+        #region Start / Stop Service
         private static void RunService(string servicename, bool v)
         {
             // Check whether the apcpbeagent service is started.
@@ -166,7 +194,8 @@ namespace RAIDManagerPatch
                 }
             }
         }
-
+        #endregion
+        #region Update / Remove class
         static void RemoveClass(string servicename, string file)
         {
             try
@@ -207,5 +236,44 @@ namespace RAIDManagerPatch
             }
             Console.WriteLine($"[i] File {file} successfully updated.");
         }
+
+        private static void UpdateClass(string path, string url, string log4jver, string log4jmodule)
+        {
+            using (var client = new WebClient())            // TODO: Switch to HttpClient
+            {
+                // =================================
+                // =      Removing old Class       =
+                // =================================
+                try
+                {
+                    Console.Write($"[i] Removing log4j-{log4jmodule}-{log4jver}.jar ... ");
+                    File.Delete(Path.Combine(path, $"log4j-{log4jmodule}-{log4jver}.jar"));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"\n[!] An error has occurred while removing: {ex}");
+                    System.Threading.Thread.Sleep(5000);
+                    Environment.Exit(-1);
+                }
+                Console.WriteLine("OK!");
+
+                // =================================
+                // =      Downloading Class        =
+                // =================================
+                try
+                {
+                    Console.Write($"[i] Downloading log4j-{log4jmodule}-2.17.1.jar ... ");
+                    client.DownloadFile(url, Path.Combine(path, $"log4j-{log4jmodule}-2.17.1.jar"));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"\n[!] An error has occurred while downloading: {ex}");
+                    System.Threading.Thread.Sleep(5000);
+                    Environment.Exit(-1);
+                }
+                Console.WriteLine("OK!");
+            }
+        }
+        #endregion
     }
 }

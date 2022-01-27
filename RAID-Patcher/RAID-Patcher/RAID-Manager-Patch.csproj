@@ -10,7 +10,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>bucker_icon.ico</ApplicationIcon>
     <DebugType>none</DebugType>
-    <PackageProjectUrl>https://github.com/valnoxy/RAID-Patcher</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/valnoxy/RAID-Manager-Patch</PackageProjectUrl>
     <Product>bucker</Product>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 	<Version>1.1.0</Version>
